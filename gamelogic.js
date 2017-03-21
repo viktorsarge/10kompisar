@@ -2,7 +2,6 @@ function randomIntFromInterval (min, max) {
     var number = Math.floor(Math.random() * (max - min + 1) + min);
     if (number === stats.lastQuestion) {
         number = randomIntFromInterval (min, max);
-        console.log("Duplicate avoided");
     }
     return number
 }
