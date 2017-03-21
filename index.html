@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Tiokompis</title>
+        <link rel="stylesheet" type="text/css" href="10kompisar.css">
+    </head>
+    <body onload="init()">
+    <div id="feedbackContainer">
+         <span class="life" id="1"></span>
+         <span class="life" id="2"></span>
+         <span class="life" id="3"></span>
+         <span class="life" id="4"></span>
+         <span class="life" id="5"></span>
+         <span class="life" id="6"></span>
+         <span class="life" id="7"></span>
+         <span class="life" id="8"></span>
+         <span class="life" id="9"></span>
+         <span class="life" id="10"></span>
+    </div>  
+    <div id="questionContainer">
+        <span id="question" class="bubble"></span></div>
+    
+    <div id="answerContainer">
+
+    <span class="bubble" onclick="answer(1)">1</span>
+    <span class="bubble" onclick="answer(2)">2</span>
+    <span class="bubble" onclick="answer(3)">3</span>
+    <span class="bubble" onclick="answer(4)">4</span>
+    <span class="bubble" onclick="answer(5)">5</span>
+    <span class="bubble" onclick="answer(6)">6</span>
+    <span class="bubble" onclick="answer(7)">7</span>
+    <span class="bubble" onclick="answer(8)">8</span>
+    <span class="bubble" onclick="answer(9)">9</span>
+
+    </div>
+    <script src="gamelogic.js"></script>  
+    <script>
+    stats = new world();
+    </script>
+    </body>
+<html>

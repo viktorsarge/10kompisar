@@ -1,0 +1,46 @@
+body {
+   background-color: gainsboro;
+}
+
+#feedbackContainer {
+    border: 2px solid grey;
+    text-align: center;
+    border-radius: 2ex;
+    background-color: white;
+    margin-bottom: 20px;    
+}
+
+#questionContainer {
+    border: 2px solid grey;
+    text-align: center;
+    font-size: 4ex;
+    border-radius: 20px;
+    background-color: white;
+    margin-bottom: 20px;    
+}
+
+#answerContainer {
+    border: 2px solid grey;
+    text-align: center;
+    border-radius: 20px;
+    background-color: white;   
+}
+
+.bubble {
+    background-color: green;
+    display: inline-block;
+    width: 2.3ex;
+    height: 2.3ex;
+    border-radius: 1.2ex;
+    color: white;
+    font-size: 6em;
+    margin: 0.2ex;
+} 
+
+#questionContainer .bubble {
+    background-color: sandybrown;
+}
+
+.life {
+    font-size: 4em;
+}
