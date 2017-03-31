@@ -26,7 +26,19 @@ body {
     background-color: white;   
 }
 
+.stars {
+    color: gold;
+    font-size: 2em;
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+
 .bubble {
+    vertical-align: middle;
     background-color: green;
     display: inline-block;
     width: 2.3ex;
@@ -35,10 +47,17 @@ body {
     color: white;
     font-size: 6em;
     margin: 0.2ex;
+    transition: background-color 0.6s;
+    
 } 
 
+.bubble:hover {
+    background-color: gold;
+}
+
 #questionContainer .bubble {
-    background-color: sandybrown;
+    background-color: gold;
+    border : 5px solid sandybrown;
 }
 
 .life {

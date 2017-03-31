@@ -25,15 +25,33 @@ function world() {
     this.question = 0;
     this.lastQuestion = 0;
     this.life = 5;
+    this.winningStreak = 0;
+    this.level = 1; 
 }
 
 function ask() {
+    var questionbox = document.getElementById("question");
+    var question = randomIntFromInterval (1,9);
+    var starSpans = document.getElementsByClassName("stars");
+    var starContent = "";
+    var i = 0;
+    var j = 0;
     if (stats.life > 0 && stats.life < 10){
-        var questionbox = document.getElementById("question");
-        var question = randomIntFromInterval (1,9);
         questionbox.innerHTML = question;
         stats.question = question;
-    } else {
+    } else if (stats.life > 9) {
+        stats.winningStreak += 1;
+        for (i = 0; i < stats.winningStreak;  i += 1) {
+            starContent = starContent + "&#9733;";
+        }
+        for (j = 0; j < starSpans.length; j += 1 ) {
+            starSpans[j].innerHTML = starContent;
+            starSpans[j].className += " visible";
+        }
+        stats.life = 5;
+        init();
+    } else 
+    {
         stats.life = 5;
         init();
     }
@@ -42,6 +60,8 @@ function ask() {
 function answer(userInput) {
     if (stats.question + userInput == 10) {
         stats.life += 1;
+        var snd = new Audio("audio/success.wav");
+        snd.play();
     } else {
         stats.life -= 1;
     }
