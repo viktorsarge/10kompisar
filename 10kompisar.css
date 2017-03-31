@@ -29,12 +29,14 @@ body {
 .stars {
     color: gold;
     font-size: 2em;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .visible {
   visibility: visible;
   opacity: 1;
-  transition: opacity 2s linear;
+  transition: opacity 0.3s linear;
 }
 
 .bubble {
