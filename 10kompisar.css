@@ -5,16 +5,17 @@ body {
 #feedbackContainer {
     border: 2px solid grey;
     text-align: center;
-    border-radius: 2ex;
-    background-color: white;
-    margin-bottom: 20px; 
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: white; 
     font-size: 4em;   
+    padding-bottom:0.2ex;
 }
 
 #questionContainer {
     border: 2px solid grey;
     text-align: center;
-    font-size: 4ex;
+    font-size: 1;
     border-radius: 20px;
     background-color: white;
     margin-bottom: 20px;    
@@ -27,9 +28,19 @@ body {
     background-color: white;   
 }
 
+#starsContainer {
+    border-bottom: 2px solid grey;
+    border-left: 2px solid grey;
+    border-right: 2px solid grey;
+    text-align: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: whiteSmoke;   
+    margin-bottom: 20px;
+} 
 .stars {
     color: gold;
-    font-size: 2em;
+    font-size: 4em;
     visibility: hidden;
     opacity: 0;
 }
@@ -42,7 +53,7 @@ body {
 .visible {
   visibility: visible;
   opacity: 1;
-  transition: opacity 0.3s linear;
+  transition: opacity 1s linear;
 }
 
 .bubble {

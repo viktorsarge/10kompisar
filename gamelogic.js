@@ -1,37 +1,38 @@
 function randomIntFromInterval (min, max) {
     var number = Math.floor(Math.random() * (max - min + 1) + min);
     if (number === stats.lastQuestion) {
-        number = randomIntFromInterval (min, max);
+        number = randomIntFromInterval(min, max);
     }
-    return number
+    return number;
 }
 
 function init() {
     var life = "";
     var i = 0;
     var time = 300;
-    var offset = 300;
-    // Set first five to white if the have been flipped to black
+    var timeOffset = 300;
+
+    // Flip life 1-5 to white if they are not already
     for (i = 1; i < 6; i += 1) {
         life = document.querySelector("#L" + i.toString());
-        if (life.classList.contains("flip")){
+        if (life.classList.contains("flip")) {
             setTimeout(flipLife, time, i);
-            time = time + offset;
+            time = time + timeOffset;
         }
     }
 
-    // Set life 6-10 to black if they are not already
-    for (i = 6; i < 11; i +=1) {
+    // Flip life 6-10 to black if they are not already
+    for (i = 6; i < 11; i += 1) {
         life = document.querySelector("#L" + i.toString());
         if (!life.classList.contains("flip")){
             setTimeout(flipLife, time, i);
-            time = time + offset;
+            time = time + timeOffset;
         }
     }
     ask();
 } 
 
-function world() {
+function gameDataObject() {
     this.question = 0;
     this.lastQuestion = 0;
     this.life = 5;
@@ -40,30 +41,37 @@ function world() {
     this.level = 1; 
 }
 
+function defaultConfig() {
+    this.questionId = "question";
+    this.starsContainerId = "starsContainer";
+    this.answerContainerId = "answerContainer"; 
+}
+
 function ask() {
     var questionbox = document.getElementById("question");
+    var starContainer = document.getElementById("#stars");
     var question = randomIntFromInterval (1,9);
-    var starSpans = document.getElementsByClassName("stars");
     var starContent = "";
     var i = 0;
-    var j = 0;
-    if (stats.life > 0 && stats.life < 10){
+
+    if (stats.life > 0 && stats.life < 10) {
+        // Give a new question if life is 1-9
         questionbox.innerHTML = question;
         stats.question = question;
     } else if (stats.life > 9) {
+        // If life is 10+ display star and reset lives with init()
         stats.winningStreak += 1;
         for (i = 0; i < stats.winningStreak;  i += 1) {
             starContent = starContent + "&#9733;";
         }
-        for (j = 0; j < starSpans.length; j += 1 ) {
-            starSpans[j].innerHTML = starContent;
-            starSpans[j].className += " visible";
-        }
+        starsContainer.innerHTML = starContent;
+        starsContainer.className += " visible";
         stats.life = stats.defaultLifeCount;
         init();
     } else 
     {
-        stats.life = stats.defaultLifeCount;;
+        // If lives are 0 start a new round
+        stats.life = stats.defaultLifeCount;
         init();
     }
 }
@@ -83,24 +91,8 @@ function answer(userInput) {
     ask();
 }
 
-/*
-function renderLife() {
-    var i = 0; 
-    var life = ""
-    for (i = 1; i < 11; i += 1) {
-        life = document.getElementById(i);
-        life.innerHTML = "&#9899;"        
-    }
-    for (i = 1; i < stats.life + 1; i += 1) {
-        life = document.getElementById(i);
-        life.innerHTML = "&#9898;"        
-    }
-} 
-*/ 
-
 function flipLife(id) {
     var bullet = "";
     bullet = document.querySelector("#L" + id.toString());
     bullet.classList.toggle("flip");
-    console.log(id);
 }
