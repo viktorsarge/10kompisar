@@ -7,7 +7,8 @@ body {
     text-align: center;
     border-radius: 2ex;
     background-color: white;
-    margin-bottom: 20px;    
+    margin-bottom: 20px; 
+    font-size: 4em;   
 }
 
 #questionContainer {
@@ -68,5 +69,65 @@ body {
 }
 
 .life {
-    font-size: 4em;
+    font-size: 8em;
+}
+
+
+/* entire container, keeps perspective */
+.flip-container {
+     perspective: 1000;
+     transform-style: preserve-3d;
+     display: inline-block;
+}
+
+/*  UPDATED! flip the pane when hovered */
+.flip-container.flip .back {
+     transform: rotateY(0deg);
+}
+.flip-container.flip .front {
+    transform: rotateY(180deg);
+    backface-visibility: hidden; 
+}
+
+.flip-container, .front {
+     width: 2ex;
+     height: 2ex;
+}
+
+.flip-container, .back {
+     width: 2ex;
+     height: 2ex;
+}
+
+ /* flip speed goes here */
+ .flipper {
+     transition: 0.6s;
+     transform-style: preserve-3d;
+     position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+ -webkit-backface-visibility: hidden;
+         backface-visibility: hidden;
+ -webkit-transition: 0.6s;
+         transition: 0.6s;
+ -webkit-transform-style: preserve-3d;
+         transform-style: preserve-3d;
+ position: absolute;
+ top: 0;
+ left: 0;
+ }
+
+ /*  UPDATED! front pane, placed above back */
+.front {
+ z-index: 2;
+ -webkit-transform: rotateY(0deg);
+         transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+ -webkit-transform: rotateY(-180deg);
+         transform: rotateY(-180deg);
 }

@@ -7,24 +7,35 @@ function randomIntFromInterval (min, max) {
 }
 
 function init() {
+    var life = "";
     var i = 0;
-    var life = ""
-    for (i = 1; i < 6; i += 1){
-        life = document.getElementById(i);
-        life.innerHTML = "&#9898;";
+    var time = 300;
+    var offset = 300;
+    // Set first five to white if the have been flipped to black
+    for (i = 1; i < 6; i += 1) {
+        life = document.querySelector("#L" + i.toString());
+        if (life.classList.contains("flip")){
+            setTimeout(flipLife, time, i);
+            time = time + offset;
+        }
     }
-    for (i = 10; i > 5; i -= 1){
-        life = document.getElementById(i);
-        life.innerHTML = "&#9899;";
+
+    // Set life 6-10 to black if they are not already
+    for (i = 6; i < 11; i +=1) {
+        life = document.querySelector("#L" + i.toString());
+        if (!life.classList.contains("flip")){
+            setTimeout(flipLife, time, i);
+            time = time + offset;
+        }
     }
     ask();
-   
 } 
 
 function world() {
     this.question = 0;
     this.lastQuestion = 0;
     this.life = 5;
+    this.defaultLifeCount = 5;
     this.winningStreak = 0;
     this.level = 1; 
 }
@@ -48,11 +59,11 @@ function ask() {
             starSpans[j].innerHTML = starContent;
             starSpans[j].className += " visible";
         }
-        stats.life = 5;
+        stats.life = stats.defaultLifeCount;
         init();
     } else 
     {
-        stats.life = 5;
+        stats.life = stats.defaultLifeCount;;
         init();
     }
 }
@@ -62,14 +73,17 @@ function answer(userInput) {
         stats.life += 1;
         var snd = new Audio("audio/success.wav");
         snd.play();
+        flipLife(stats.life);
     } else {
+        flipLife(stats.life);
         stats.life -= 1;
     }
-    renderLife();
+    //renderLife();
     stats.lastQuestion = stats.question;
     ask();
 }
 
+/*
 function renderLife() {
     var i = 0; 
     var life = ""
@@ -82,3 +96,11 @@ function renderLife() {
         life.innerHTML = "&#9898;"        
     }
 } 
+*/ 
+
+function flipLife(id) {
+    var bullet = "";
+    bullet = document.querySelector("#L" + id.toString());
+    bullet.classList.toggle("flip");
+    console.log(id);
+}
