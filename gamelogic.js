@@ -23,7 +23,7 @@ function init() {
             time = time + timeOffset;
         }
     }
-    ask();
+    askNewQuestion();
 }
 
 function gameDataObject() {
@@ -33,6 +33,7 @@ function gameDataObject() {
     this.defaultLifeCount = 5;
     this.winningStreak = 0;
     this.level = 1;
+    this.acceptingAnswers = false;
 }
 
 function defaultConfig() {
@@ -41,19 +42,20 @@ function defaultConfig() {
     this.answerContainerId = "answerContainer";
 }
 
-function ask() {
+function askNewQuestion() {
     var questionbox = document.getElementById("question");
     var starsContainer = document.getElementById("starsContainer");
     var question = randomIntFromInterval(1, 9);
     var starContent = "";
     var i = 0;
 
-    updateElementById(10, "sumBubble");
-    updateElementById("?", "answerbubble");
+    updateElementById("sumBubble", 10);
+    updateElementById("answerbubble", "?");
     if (stats.life > 0 && stats.life < 10) {
         // Give a new question if life is 1-9
         questionbox.innerHTML = question;
         stats.question = question;
+        stats.acceptingAnswers = true;
     } else if (stats.life > 9) {
         // If life is 10+ display star and reset lives with init()
         stats.winningStreak += 1;
@@ -63,18 +65,19 @@ function ask() {
         starsContainer.innerHTML = starContent;
         starsContainer.className += " visible";
         stats.life = stats.defaultLifeCount;
+        stats.acceptingAnswers = true;
         init();
     } else {
         // If lives are 0 start a new round
         stats.life = stats.defaultLifeCount;
-        console.log(stats.life);
-        console.log("Entered 0 lives case");
+        stats.acceptingAnswers = true;
         init();
     }
 }
 
 function answer(userInput) {
-    updateElementById(userInput + stats.question, "sumBubble");
+    stats.acceptingAnswers = false;
+    updateElementById("sumBubble", userInput + stats.question);
     if (stats.question + userInput === 10) {
         stats.life += 1;
         playSound("audio/success.wav");
@@ -84,7 +87,7 @@ function answer(userInput) {
         stats.life -= 1;
     }
     stats.lastQuestion = stats.question;
-    setTimeout(ask, 2000);
+    setTimeout(askNewQuestion, 2000);
 }
 
 function randomIntFromInterval(min, max) {
@@ -101,11 +104,13 @@ function updateAnswerBubble(id) {
 }
 
 function clearAnswerBubble() {
-    var element = document.getElementById("answerbubble");
-    element.innerHTML = "?";
+    if (stats.acceptingAnswers) {
+        var element = document.getElementById("answerbubble");
+        element.innerHTML = "?";
+    }
 }
 
-function updateElementById(newContent, id) {
+function updateElementById(id, newContent) {
     var element = document.getElementById(id);
     element.innerHTML = newContent;
 }
