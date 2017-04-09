@@ -87,7 +87,11 @@ function answer(userInput) {
         stats.life -= 1;
     }
     stats.lastQuestion = stats.question;
-    setTimeout(askNewQuestion, 2000);
+    if (userInput + stats.question === 10) {
+        setTimeout(askNewQuestion, 500);
+    } else {
+        setTimeout(askNewQuestion, 2000);
+    }
 }
 
 function randomIntFromInterval(min, max) {
