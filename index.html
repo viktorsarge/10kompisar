@@ -116,27 +116,27 @@
 		</div>		
 	
     </div>  
-    <div id="starsContainer" class="stars">
+    <div id="starsContainer" class="stars">&nbsp;
     </div>
     <div id="questionContainer">
         <span id="question" class="bubble"></span>        
         <span class="bubble">+</span>
-        <span class="bubble">?</span>
+        <span id="answerbubble" class="bubble">?</span>
         <span class="bubble">=</span>
-        <span class="bubble">10</span>
+        <span id="sumBubble" class="bubble">10</span>
     </div>
     
     <div id="answerContainer">
 
-    <span class="bubble" onclick="answer(1)">1</span>
-    <span class="bubble" onclick="answer(2)">2</span>
-    <span class="bubble" onclick="answer(3)">3</span>
-    <span class="bubble" onclick="answer(4)">4</span>
-    <span class="bubble" onclick="answer(5)">5</span>
-    <span class="bubble" onclick="answer(6)">6</span>
-    <span class="bubble" onclick="answer(7)">7</span>
-    <span class="bubble" onclick="answer(8)">8</span>
-    <span class="bubble" onclick="answer(9)">9</span>
+    <span class="bubble" onmouseover="updateAnswerBubble(1)" onmouseout="clearAnswerBubble()" onclick="answer(1)">1</span>
+    <span class="bubble" onmouseover="updateAnswerBubble(2)" onmouseout="clearAnswerBubble()" onclick="answer(2)">2</span>
+    <span class="bubble" onmouseover="updateAnswerBubble(3)" onmouseout="clearAnswerBubble()" onclick="answer(3)">3</span>
+    <span class="bubble" onmouseover="updateAnswerBubble(4)" onmouseout="clearAnswerBubble()" onclick="answer(4)">4</span>
+    <span class="bubble" onmouseover="updateAnswerBubble(5)" onmouseout="clearAnswerBubble()" onclick="answer(5)">5</span>
+    <span class="bubble" onmouseover="updateAnswerBubble(6)" onmouseout="clearAnswerBubble()" onclick="answer(6)">6</span>
+    <span class="bubble" onmouseover="updateAnswerBubble(7)" onmouseout="clearAnswerBubble()" onclick="answer(7)">7</span>
+    <span class="bubble" onmouseover="updateAnswerBubble(8)" onmouseout="clearAnswerBubble()" onclick="answer(8)">8</span>
+    <span class="bubble" onmouseover="updateAnswerBubble(9)" onmouseout="clearAnswerBubble()" onclick="answer(9)">9</span>
 
     </div>
     <script src="gamelogic.js"></script>  
