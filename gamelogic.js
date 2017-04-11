@@ -103,8 +103,10 @@ function randomIntFromInterval(min, max) {
 }
 
 function updateAnswerBubble(id) {
-    var element = document.getElementById("answerbubble");
-    element.innerHTML = id;
+    if (stats.acceptingAnswers) {
+        var element = document.getElementById("answerbubble");
+        element.innerHTML = id;
+    }
 }
 
 function clearAnswerBubble() {
