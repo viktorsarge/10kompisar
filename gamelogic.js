@@ -6,7 +6,7 @@ function init() {
     var time = 300;
     var timeOffset = 300;
 
-    // Flip life 1-5 to white if not already white
+    // Flip life 1-5 to white if not already white.
     for (i = 1; i < 6; i += 1) {
         life = document.querySelector("#L" + i.toString());
         if (life.classList.contains("flip")) {
