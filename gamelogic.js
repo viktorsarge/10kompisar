@@ -15,7 +15,7 @@ function init() {
         }
     }
 
-    // Flip life 6-10 to black if not already black
+    // Flip life 6-10 to black if not already black.
     for (i = 6; i < 11; i += 1) {
         life = document.querySelector("#L" + i.toString());
         if (!life.classList.contains("flip")) {
